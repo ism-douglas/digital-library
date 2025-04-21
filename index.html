@@ -78,7 +78,6 @@
       border: 1px solid #ddd;
       border-radius: 8px;
       height: 50px;
-      font-weight: bold;
       font-size: 1rem;
       padding: 0.5rem 1rem;
     }
@@ -156,11 +155,16 @@
       font-style: italic;
       border-radius: 5px;
       margin-bottom: 2rem;
-    }
+    }  
+
+    .text-orange {
+      color: #f04f25;
+    } 
 
     .text-pink {
       color: #e83e8c;
     }
+
   </style>
 </head>
 <body>
@@ -184,25 +188,33 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero mb-3">
     <div class="hero-content">
-      <h1 class="display-5 fw-bold">Welcome to the Digital Ministry Library</h1>
+      <h1 class="display-5 fw-bold">Welcome to the Digital Library</h1>
       <p class="lead">Explore books, devotionals, and more curated for your spiritual growth.</p>
       <a href="#categories" class="btn btn-orange">Browse Categories</a>
     </div>
   </section>
 
   <!-- Search Bar -->
-  <div class="container my-4">
+  <div class="container my-4 mb-5">
     <form class="d-flex justify-content-center">
       <input class="form-control me-2 w-75" type="search" placeholder="Search books..." aria-label="Search">
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
   </div>
 
+    <!-- Verse of the Day -->
+  <div class="container">
+    <div class="verse-box">
+      <strong>Verse of the Day:</strong><br>
+      “Your word is a lamp to my feet and a light to my path.” — Psalm 119:105
+    </div>
+  </div>
+
   <!-- Categories Section -->
-  <div class="container my-5" id="categories">
-    <h3 class="mb-4 text-center text-primary">Browse by Category</h3>
+  <div class="container my-5 p-4" id="categories">
+    <!-- <h3 class="mb-5 text-center text-secondary fw-bold">Featured Topics</h3> -->
     <div class="row g-4">
       <div class="col-6 col-md-3">
         <div class="category-card shadow-sm">
@@ -247,17 +259,11 @@
     </div>
   </div>
 
-  <!-- Verse of the Day -->
-  <div class="container">
-    <div class="verse-box">
-      <strong>Verse of the Day:</strong><br>
-      “Your word is a lamp to my feet and a light to my path.” — Psalm 119:105
-    </div>
-  </div>
+
 
   <!-- Books Section -->
-  <div class="container mb-5">
-    <h3 class="mb-4 text-center text-primary">Featured Books</h3>
+  <div class="container mb-5 p-4">
+    <h3 class="mb-5 text-center text-secondary">Featured Books</h3>
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
         <div class="card h-100 shadow-sm book-card">
@@ -265,7 +271,7 @@
             <img src="https://picsum.photos/200/300?random=1" class="book-image" alt="Book Cover">
           </div>
           <div class="book-details">
-            <h5 class="card-title text-primary">Book Title 1</h5>
+            <h5 class="card-title text-orange">Book Title 1</h5>
             <p class="text-muted">Category: Theology</p>
             <p class="card-text">An enlightening book that explores theological perspectives and doctrines.</p>
             <button class="btn btn-primary">Learn More</button>
@@ -279,7 +285,7 @@
             <img src="https://picsum.photos/200/300?random=2" class="book-image" alt="Book Cover">
           </div>
           <div class="book-details">
-            <h5 class="card-title text-primary">Book Title 2</h5>
+            <h5 class="card-title text-orange">Book Title 2</h5>
             <p class="text-muted">Category: Devotion</p>
             <p class="card-text">A devotional to guide your daily spiritual walk and growth.</p>
             <button class="btn btn-primary">Learn More</button>
@@ -293,7 +299,7 @@
             <img src="https://picsum.photos/200/300?random=3" class="book-image" alt="Book Cover">
           </div>
           <div class="book-details">
-            <h5 class="card-title text-primary">Book Title 3</h5>
+            <h5 class="card-title text-orange">Book Title 3</h5>
             <p class="text-muted">Category: History</p>
             <p class="card-text">Dive into the rich and transformative history of the Church.</p>
             <button class="btn btn-primary">Learn More</button>
@@ -305,7 +311,7 @@
 
 
 <!-- 📩 Newsletter Signup -->
-<div class="container my-5">
+<div class="container my-5 p-3">
   <div class="bg-light p-4 rounded">
     <h5>📬 Subscribe for Updates</h5>
     <form class="row g-2">
