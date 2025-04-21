@@ -1,189 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Digital Ministry Library</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-     <style>
-      /* General Styling */
-      .category-card {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        font-weight: bold;
-        font-size: 1.1rem;
-        text-align: center;
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+    }
+
+    .navbar {
+      background-color: #2e3192;
+    }
+
+    .navbar-brand,
+    .navbar-nav .nav-link {
+      color: white !important;
+    }
+
+    .hero {
+      position: relative;
+      background-image: url('https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 40vh;
       }
 
-      /* Book Cards Styling */
-      .book-card {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        height: 100%;
+      .hero h1 {
+        font-size: 1.5rem; /* Reduced from 1.5rem */
       }
 
-      .book-image-container {
-        width: 150px; /* Fixed width for the image */
-        height: auto;
-        overflow: hidden;
+      .hero p {
+        font-size: 0.85rem;
       }
 
-      .book-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      .hero .btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
       }
+    }
 
-      .book-details {
-        flex: 1;
-        background-color: #f8f9fa;
-        border-left: 4px solid #2e3192; /* Highlight using the blue color */
-        padding: 1rem;
-      }
 
-      /* Reduced font size for book details */
-      .book-details .card-title {
-        font-size: 1rem; /* Reduced font size for book titles */
-      }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(46, 49, 146, 0.6);
+    }
 
-      .book-details .card-text {
-        font-size: 0.875rem; /* Reduced font size for descriptions */
-      }
+    .hero-content {
+      position: relative;
+      color: white;
+      text-align: center;
+      z-index: 2;
+    }
 
-      /* Button Styling */
-      .btn-primary {
-        background-color: #2e3192;
-        border-color: #2e3192;
-      }
+    .hero .btn {
+      margin-top: 1rem;
+    }
 
-      .btn-primary:hover {
-        background-color: #f04f25;
-        border-color: #f04f25;
-      }
+    .category-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      height: 50px;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+    }
 
-      /* Footer Styling */
-      .footer {
-        background-color: #2e3192;
-        color: white;
-        padding: 1rem 0;
-      }
+    .category-card i {
+      margin-right: 10px;
+    }
 
-      .footer a {
-        color: cyan;
-        text-decoration: none;
-      }
+    .book-card {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      height: 100%;
+    }
 
-      .footer a:hover {
-        text-decoration: underline;
-      }
-    </style>
+    .book-image-container {
+      width: 150px;
+      overflow: hidden;
+    }
 
+    .book-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .book-details {
+      flex: 1;
+      background-color: #f8f9fa;
+      border-left: 4px solid #2e3192;
+      padding: 1rem;
+    }
+
+    .btn-primary {
+      background-color: #2e3192;
+      border-color: #2e3192;
+    }
+
+    .btn-primary:hover {
+      background-color: #f04f25;
+      border-color: #f04f25;
+    }
+
+    .footer {
+      background-color: #2e3192;
+      color: white;
+      padding: 2rem 0;
+    }
+
+    .footer a {
+      color: #f8f9fa;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .verse-box {
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-left: 5px solid #f04f25;
+      font-style: italic;
+      border-radius: 5px;
+      margin-bottom: 2rem;
+    }
+
+    .text-pink {
+      color: #e83e8c;
+    }
+  </style>
 </head>
 <body>
-  <!-- Top Menu -->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2e3192;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Digital Ministry Library</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">Digital Ministry</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="mainMenu">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Books</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <div class="container my-5">
-    <h2 class="text-center mb-5" style="color: #2e3192;">Ministry Resources</h2>
-    
-    <!-- Categories Section -->
-    <div class="row row-cols-2 row-cols-md-4 g-4 mb-5">
-      <div class="col">
-        <div class="category-card">Theology</div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="display-5 fw-bold">Welcome to the Digital Ministry Library</h1>
+      <p class="lead">Explore books, devotionals, and more curated for your spiritual growth.</p>
+      <a href="#categories" class="btn btn-primary">Browse Categories</a>
+    </div>
+  </section>
+
+  <!-- Search Bar -->
+  <div class="container my-4">
+    <form class="d-flex justify-content-center">
+      <input class="form-control me-2 w-75" type="search" placeholder="Search books..." aria-label="Search">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </div>
+
+  <!-- Categories Section -->
+  <div class="container my-5" id="categories">
+    <h3 class="mb-4 text-center text-primary">Browse by Category</h3>
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <div class="category-card shadow-sm">
+          <i class="fas fa-book-open text-primary fa-lg"></i> Theology
+        </div>
       </div>
-      <div class="col">
-        <div class="category-card">Inspiration</div>
+      <div class="col-6 col-md-3">
+        <div class="category-card shadow-sm">
+          <i class="fas fa-hands text-success fa-lg"></i> Devotion
+        </div>
       </div>
-      <div class="col">
-        <div class="category-card">History</div>
+      <div class="col-6 col-md-3">
+        <div class="category-card shadow-sm">
+          <i class="fas fa-history text-warning fa-lg"></i> History
+        </div>
       </div>
-      <div class="col">
-        <div class="category-card">Biography</div>
+      <div class="col-6 col-md-3">
+        <div class="category-card shadow-sm">
+          <i class="fas fa-chalkboard-teacher text-info fa-lg"></i> Sermons
+        </div>
       </div>
-      <div class="col">
-        <div class="category-card">Devotion</div>
+      <div class="col-6 col-md-3">
+        <div class="category-card shadow-sm">
+          <i class="fas fa-bible text-danger fa-lg"></i> Bible Study
+        </div>
       </div>
-      <div class="col">
-        <div class="category-card">Children</div>
+      <div class="col-6 col-md-3">
+        <div class="category-card shadow-sm">
+          <i class="fas fa-users text-secondary fa-lg"></i> Leadership
+        </div>
       </div>
-      <div class="col">
-        <div class="category-card">Prayer</div>
+      <div class="col-6 col-md-3">
+        <div class="category-card shadow-sm">
+          <i class="fas fa-heart text-pink fa-lg"></i> Inspiration
+        </div>
       </div>
-      <div class="col">
-        <div class="category-card">Leadership</div>
+      <div class="col-6 col-md-3">
+        <div class="category-card shadow-sm">
+          <i class="fas fa-cross text-dark fa-lg"></i> Church Life
+        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Books Section -->
+  <!-- Verse of the Day -->
+  <div class="container">
+    <div class="verse-box">
+      <strong>Verse of the Day:</strong><br>
+      “Your word is a lamp to my feet and a light to my path.” — Psalm 119:105
+    </div>
+  </div>
+
+  <!-- Books Section -->
+  <div class="container mb-5">
+    <h3 class="mb-4 text-center text-primary">Featured Books</h3>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      <!-- Book Card 1 -->
       <div class="col">
         <div class="card h-100 shadow-sm book-card">
           <div class="book-image-container">
             <img src="https://picsum.photos/200/300?random=1" class="book-image" alt="Book Cover">
           </div>
           <div class="book-details">
-            <h5 class="card-title" style="color: #2e3192;">Book Title 1</h5>
+            <h5 class="card-title text-primary">Book Title 1</h5>
             <p class="text-muted">Category: Theology</p>
             <p class="card-text">An enlightening book that explores theological perspectives and doctrines.</p>
             <button class="btn btn-primary">Learn More</button>
           </div>
         </div>
       </div>
-      <!-- Book Card 2 -->
+
       <div class="col">
         <div class="card h-100 shadow-sm book-card">
           <div class="book-image-container">
             <img src="https://picsum.photos/200/300?random=2" class="book-image" alt="Book Cover">
           </div>
           <div class="book-details">
-            <h5 class="card-title" style="color: #2e3192;">Book Title 2</h5>
-            <p class="text-muted">Category: Inspiration</p>
-            <p class="card-text">A motivational book filled with stories to uplift your spirit and guide your faith.</p>
+            <h5 class="card-title text-primary">Book Title 2</h5>
+            <p class="text-muted">Category: Devotion</p>
+            <p class="card-text">A devotional to guide your daily spiritual walk and growth.</p>
             <button class="btn btn-primary">Learn More</button>
           </div>
         </div>
       </div>
-      <!-- Book Card 3 -->
+
       <div class="col">
         <div class="card h-100 shadow-sm book-card">
           <div class="book-image-container">
             <img src="https://picsum.photos/200/300?random=3" class="book-image" alt="Book Cover">
           </div>
           <div class="book-details">
-            <h5 class="card-title" style="color: #2e3192;">Book Title 3</h5>
+            <h5 class="card-title text-primary">Book Title 3</h5>
             <p class="text-muted">Category: History</p>
-            <p class="card-text">Dive into the rich history of the church and its influence over the centuries.</p>
+            <p class="card-text">Dive into the rich and transformative history of the Church.</p>
             <button class="btn btn-primary">Learn More</button>
           </div>
         </div>
@@ -191,17 +291,57 @@
     </div>
   </div>
 
+
+<!-- 📩 Newsletter Signup -->
+<div class="container my-5">
+  <div class="bg-light p-4 rounded">
+    <h5>📬 Subscribe for Updates</h5>
+    <form class="row g-2">
+      <div class="col-sm-9">
+        <input type="email" class="form-control" placeholder="Enter your email">
+      </div>
+      <div class="col-sm-3">
+        <button class="btn btn-primary w-100">Subscribe</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 📈 Stats Section -->
+<div class="container text-center my-5">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>500+</h2>
+      <p>Books</p>
+    </div>
+    <div class="col-md-3">
+      <h2>1200+</h2>
+      <p>Readers</p>
+    </div>
+    <div class="col-md-3">
+      <h2>300+</h2>
+      <p>Churches</p>
+    </div>
+    <div class="col-md-3">
+      <h2>50+</h2>
+      <p>Contributors</p>
+    </div>
+  </div>
+</div>
+
+<!-- Existing footer and scripts go here -->
+
+
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <p>&copy; 2025 Church Library. All rights reserved.</p>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-        </div>
-      </div>
+    <div class="container text-center">
+      <p>&copy; 2025 Digital Ministry Library</p>
+      <p>
+        <a href="#"><i class="fab fa-facebook fa-lg me-2"></i></a>
+        <a href="#"><i class="fab fa-twitter fa-lg me-2"></i></a>
+        <a href="#"><i class="fab fa-instagram fa-lg me-2"></i></a>
+        <a href="#"><i class="fas fa-envelope fa-lg me-2"></i> contact@ministry.org</a>
+      </p>
     </div>
   </footer>
 
